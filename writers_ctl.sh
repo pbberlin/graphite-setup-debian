@@ -14,7 +14,7 @@
 #                    row3
 ### END INIT INFO
 
-# /etc/init.d/rsync: start and stop graphite relay and writers
+# /etc/init.d/writers_ctl: start and stop graphite relay and writers
 
 
 APPNAME="graphite relay and writers"
