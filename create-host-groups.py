@@ -27,7 +27,7 @@ def execute_query(arg_host, arg_query):
     con = None
 
     try:
-        con = mdb.connect(  host=arg_host, user='idealo', passwd='ALg0SedZKa', connect_timeout=2 );
+        con = mdb.connect(  host=arg_host, user='idealo', passwd='s3cr3t', connect_timeout=2 );
     
         with con: 
             cur = con.cursor()
