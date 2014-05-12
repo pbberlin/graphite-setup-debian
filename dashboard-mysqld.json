@@ -1,0 +1,37 @@
+[
+  {
+    "target": [
+      "lineWidth(color(alias(sumSeries(   scaleToSeconds(sumSeriesWithWildcards(roles.mysql_master.*.iostat.sd?.{reads,writes},4           ),1)    ),\"Requests - IOPS - total (fett)\"),'aa0000'),4)",
+      "color(alias(sumSeries(   scaleToSeconds(sumSeriesWithWildcards(roles.mysql_master.*.iostat.sd?.{reads,xxxxxx},4           ),1)    ),\"Requests - IOPS - reads \"),'ff0000') ",
+      "color(alias(sumSeries(   scaleToSeconds(sumSeriesWithWildcards(roles.mysql_master.*.iostat.sd?.{xxxxx,writes},4           ),1)    ),\"Requests - IOPS - writes\"),'880000')",
+      "secondYAxis(movingAverage(alias(groupByNode(roles.mysql_master.*.iostat.sd?.average_request_size_byte,2,\"averageSeries\"),\"Request Size\"),20))"
+    ],
+    "title": "IOPS"
+  },
+  {
+    "target": [
+      "currentAbove(scaleToSeconds(sumSeriesWithWildcards(roles.mysql_master.*.iostat.sd?.{reads,writes},4           ),1),100)",
+      "",
+      ""
+    ],
+    "title": "Reads and Writes - IOPS"
+  },
+  {
+    "lineMode": "connected",
+    "target": [
+      "currentAbove(movingAverage(roles.mysql_master.*.iostat.sd?.average_request_size_byte,40),30000)",
+      ""
+    ],
+    "title": "Request Size (IOPS Size)",
+    "hideLegend": "false"
+  },
+  {
+    "hideLegend": "false",
+    "lineMode": "connected",
+    "target": [
+      "sumSeriesWithWildcards(sumSeriesWithWildcards(sumSeriesWithWildcards(roles.mysql_master.*.network.eth?.{tx,rx}_byte,3),3),3)",
+      ""
+    ],
+    "title": "Network - read plus write"
+  }
+]

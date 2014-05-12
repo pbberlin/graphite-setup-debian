@@ -1,0 +1,62 @@
+[
+  {
+    "hideLegend": "false",
+    "lineMode": "connected",
+    "target": [
+      "sumSeriesWithWildcards(servers.{s547,s548,s549}.mysql.Com_{delete,delete_multi,insert,insert_select,replace,replace_select,update,update_multi},3)",
+      ""
+    ],
+    "title": "Updates, Inserts, Deletes"
+  },
+  {
+    "target": [
+      "sumSeriesWithWildcards(servers.{s547,s548,s549}.iostat.sd?.{reads,writes},4           )",
+      "",
+      ""
+    ],
+    "title": "Reads and Writes - IOPS"
+  },
+  {
+    "hideLegend": "false",
+    "target": [
+      "alias(diffSeries(servers.s547.memory.MemTotal,servers.s547.memory.MemFree,servers.s547.memory.Buffers,servers.s547.memory.Cached),'Used')",
+      "servers.s547.memory.Cached",
+      "servers.s547.memory.MemFree",
+      "servers.s547.memory.Buffers",
+      ""
+    ],
+    "title": "Memory",
+    "areaMode": "stacked"
+  },
+  {
+    "hideLegend": "false",
+    "colorList": "#00bbcc,#33bbcc,#77bbcc,#cc00dd,#cc33dd,#cc77dd,#ddee00,#ddee33,#ddee77",
+    "target": [
+      "lineWidth(color(servers.{s547,s548,s549}.memory.MemTotal,'#aabbcc'),3)",
+      "averageAbove(exclude(servers.{ss547,ss548,ss549}.memory.*,'|(VM*)|(MemTot*)|(MemFre*)|(Swap*)'),1001001001)",
+      ""
+    ],
+    "title": "Memory Total"
+  },
+  {
+    "hideLegend": "false",
+    "target": [
+      "averageAbove(color(servers.{s547,s548,s549}.memory.Swap*,'#bb22bb'),1001001)",
+      "lineWidth(color(servers.{s547,s548,s549}.memory.MemTotal,'#aabbcc'),1)",
+      ""
+    ],
+    "title": "Memory Swap"
+  },
+  {
+    "hideLegend": "false",
+    "lineMode": "connected",
+    "title": "Network - read or write",
+    "target": [
+      "alpha(color(sumSeriesWithWildcards(servers.{s547,s548,s549}.network.eth?.{tx,xx}_byte,3),'444444'),0.2)",
+      "alpha(color(sumSeriesWithWildcards(servers.{s547,s548,s549}.network.eth?.{xx,rx}_byte,3),'666666'),0.2)",
+      "lineWidth(sumSeriesWithWildcards(sumSeriesWithWildcards(servers.{s547,s548,s549}.network.eth?.{tx,rx}_byte,3),3),3)",
+      ""
+    ],
+    "height": 100
+  }
+]
