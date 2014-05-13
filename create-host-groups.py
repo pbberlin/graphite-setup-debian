@@ -4,11 +4,16 @@
 import MySQLdb as mdb
 import _mysql
 import sys
+import getpass
+
+
+if getpass.getuser() != "www-data" :
+  print "this script must be run as www-data"
+  sys.exit(1)
 
 
 msg='''
 This script is only an early prototype to demonstrate the ideas.
-Script muss nach graphite.ipx:/opt/graphite/bin/ gelegt werden.
 '''
 
 
@@ -68,7 +73,7 @@ LEFT  JOIN              foreman.fact_values  t3  ON t1.id        = t3.host_id   
 LEFT  JOIN 		foreman.fact_values  t7  ON t1.id	 = t7.host_id   AND t7.fact_name_id=14 
 WHERE      1=1
        AND NOT (t3.value  LIKE '%undef%')
-  /*     AND NOT (t3.value  =    'onekvmhost')  */
+/*       AND NOT (t3.value  =    'onekvmhost')  */
        AND NOT (t2.name   =    'lvl.bln')
 
        OR
